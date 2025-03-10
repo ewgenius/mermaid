@@ -4,7 +4,7 @@ name: spicehq-architect
 
 datasets:
   - from: github:github.com/mermaid-js/mermaid/files/master
-    name: docs
+    name: mermaid.docs
     params:
       include: packages/mermaid/src/docs/syntax/**/*.md
     acceleration:
