@@ -1,0 +1,28 @@
+version: v1
+kind: Spicepod
+name: spicehq-architect
+
+datasets:
+  - from: github:github.com/mermaid-js/mermaid/files/master
+    name: mermaid_docs
+    params:
+      include: packages/mermaid/src/docs/syntax/**/*.md
+    acceleration:
+      enabled: true
+    columns:
+      - name: content
+        embeddings:
+          - chunking:
+              enabled: true
+              overlap_size: 128
+              target_chunk_size: 512
+              trim_whitespace: true
+            from: openai_embeddings
+            row_id:
+              - path
+
+embeddings:   
+  - from: openai
+    name: openai_embeddings
+    params:
+      openai_api_key: ${ secrets:OPENAI_API_KEY }
